@@ -55,7 +55,7 @@ BASE_URL = "http://localhost:5000"
 TOKEN = "seu_token_aqui"
 
 params = {
-    "file_path": "C:/Users/Kraus/Downloads/arquivo.txt"  # Caminho completo do arquivo no servidor
+    "file_path": "C:\Users\Kraus\Downloads\arquivo.txt"  # Caminho completo do arquivo no servidor
 }
 
 response = requests.get(
@@ -71,3 +71,4 @@ if response.status_code == 200:
 else:
     print("Erro:", response.json())
 ```
+Importante: Certifique-se de usar barras invertidas (\) ou barras normais (/) conforme seu sistema operacional e escape-as corretamente se necessário.
