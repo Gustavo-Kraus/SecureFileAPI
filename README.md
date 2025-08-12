@@ -46,11 +46,9 @@ if response.status_code == 200:
     print("Token JWT:", token)
 else:
     print("Erro ao autenticar:", response.json())
-Exemplo 2 — Download de arquivo usando token JWT (Python)
-python
-Sempre exibir os detalhes
-
-Copiar
+```
+### Exemplo 2 — Download de arquivo usando token JWT (Python)
+```python
 import requests
 
 BASE_URL = "http://localhost:5000"
@@ -68,6 +66,7 @@ response = requests.get(
 
 if response.status_code == 200:
     with open("arquivo_baixado.txt", "wb") as f:
+```
         f.write(response.content)
     print("Arquivo baixado com sucesso!")
 else:
