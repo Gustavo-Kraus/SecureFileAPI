@@ -66,8 +66,8 @@ response = requests.get(
 
 if response.status_code == 200:
     with open("arquivo_baixado.txt", "wb") as f:
-```
         f.write(response.content)
     print("Arquivo baixado com sucesso!")
 else:
     print("Erro:", response.json())
+```
