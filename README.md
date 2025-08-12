@@ -1,33 +1,35 @@
-SecureFileAPI é uma API simples desenvolvida para realizar downloads de arquivos diretamente do servidor, garantindo proteção por autenticação JWT (JSON Web Token).
+# SecureFileAPI
+
+**SecureFileAPI** é uma API desenvolvida para realizar downloads de arquivos diretamente do servidor, garantindo proteção por autenticação JWT (JSON Web Token).  
 O objetivo é fornecer um meio seguro e controlado para que apenas usuários autorizados possam acessar documentos, relatórios ou dados sensíveis.
 
-Principais características
-Segurança: Autenticação e autorização via JWT para evitar acessos não autorizados.
+---
 
-Configuração flexível: Usuário, senha e chave JWT configurados por variáveis de ambiente, facilitando implantação em diferentes ambientes (desenvolvimento, staging, produção).
+## Principais características
 
-Desempenho otimizado: Compatível com servidores ASGI via uvicorn para melhor performance.
+- **Segurança:** Autenticação e autorização via JWT para evitar acessos não autorizados.
+- **Configuração flexível:** Usuário, senha e chave JWT configurados por variáveis de ambiente, facilitando implantação em diferentes ambientes (desenvolvimento, staging, produção).
+- **Desempenho otimizado:** Compatível com servidores ASGI via `uvicorn` para melhor performance.
+- **Simplicidade de uso:** Rotas enxutas e objetivas:  
+  - `/login` para autenticação  
+  - `/baixar_arquivo` para download protegido.
 
-Simplicidade de uso: Rotas enxutas e objetivas:
+---
 
-/login para autenticação
+## Fluxo de funcionamento
 
-/baixar_arquivo para download protegido.
+1. O usuário envia suas credenciais para o endpoint `/login`.  
+2. Recebe um token JWT válido por tempo limitado.  
+3. Utiliza esse token no header da requisição para acessar o endpoint `/baixar_arquivo`.  
+4. O servidor valida o token e, se autorizado, envia o arquivo solicitado.
 
-Fluxo de funcionamento
-O usuário envia suas credenciais para o endpoint /login.
+---
 
-Recebe um token JWT válido por tempo limitado.
+## Exemplos de uso
 
-Utiliza esse token no header da requisição para acessar o endpoint /baixar_arquivo.
+### Exemplo 1 — Login e obtenção do token JWT (Python)
 
-O servidor valida o token e, se autorizado, envia o arquivo solicitado.
-
-Exemplos de uso
-Exemplo 1 — Login e obtenção do token JWT (Python)
-python
-Copiar
-Editar
+```python
 import requests
 
 BASE_URL = "http://localhost:5000"
@@ -46,8 +48,9 @@ else:
     print("Erro ao autenticar:", response.json())
 Exemplo 2 — Download de arquivo usando token JWT (Python)
 python
+Sempre exibir os detalhes
+
 Copiar
-Editar
 import requests
 
 BASE_URL = "http://localhost:5000"
@@ -69,4 +72,3 @@ if response.status_code == 200:
     print("Arquivo baixado com sucesso!")
 else:
     print("Erro:", response.json())
-Importante: Certifique-se de usar barras invertidas (\) ou barras normais (/) conforme seu sistema operacional e escape-as corretamente se necessário.
